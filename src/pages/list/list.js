@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Radio } from '@tarojs/components'
 import { AtButton, AtForm, AtRadio, AtToast, AtCard } from 'taro-ui'
+import topImg from '../../assets/images/list-1.png'
 import './list.less'
 
 export default class List extends Component {
@@ -73,7 +74,7 @@ export default class List extends Component {
     } else {
       wx.showLoading({
         title: '加载中',
-        mask: true,
+        mask: true
       })
       this.onSaveExam(datalist)
       this.setState({
@@ -135,6 +136,10 @@ export default class List extends Component {
     const { datalist, showError } = this.state
     return (
       <View className="list">
+        <View className="top-img">
+          <Image src={topImg} mode="widthFix" style="width:660rpx" />
+          <View>3.15 信通客服优质服务联合行动</View>
+        </View>
         <AtForm
           className={showError ? 'list-form error' : 'list-form'}
           onSubmit={this.onSubmit}
@@ -146,14 +151,20 @@ export default class List extends Component {
                 key={item.number}
                 title={`第${item.number + 1}题：${item.title}`}
               >
-                <AtRadio
-                  options={[
-                    { label: '是', value: '1' },
-                    { label: '否', value: '0' }
-                  ]}
-                  value={item.value}
-                  onClick={value => this.onCheckedChange(item, value)}
-                />
+                <RadioGroup
+                  onChange={value => this.onCheckedChange(item, value)}
+                >
+                  <Label className="radio-list__label">
+                    <Radio color="#2571fe" value="1">
+                      {' 是'}
+                    </Radio>
+                  </Label>
+                  <Label className="radio-list__label">
+                    <Radio color="#2571fe" value="0">
+                      {' 否'}
+                    </Radio>
+                  </Label>
+                </RadioGroup>
               </AtCard>
             ))}
           </View>

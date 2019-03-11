@@ -1,11 +1,29 @@
 .index {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .introImg {
+    flex: auto;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .form-index--at-form::after {
+    border: none;
+  }
   .at-form::after {
     border: none;
   }
   .title {
     font-size: 1.2rem;
-    margin: 100rpx 50rpx 20rpx;
+    margin: 10rpx 50rpx 20rpx;
+    color: #2571fe;
+  }
+  .intro {
+    color: tint(#2571fe);
   }
   .avatar {
     width: 160rpx;
@@ -14,18 +32,21 @@
     margin-bottom: 50rpx;
   }
   .info {
-    position: absolute;
-    bottom: 200rpx;
-    text-align: center;
-    width: 90%;
-    margin: 0 auto; 
-    left: 0;
-    right: 0;
+    // position: absolute;
+    // bottom: 200rpx;
+    // text-align: center;
+    // width: 90%;
+    // margin: 0 auto;
+    // left: 0;
+    // right: 0;
   }
   .submitBtn {
-    margin-top: 40rpx;
+    margin: 40rpx;
   }
-  .at-form {
+  .button-index--submitBtn {
+    margin: 40rpx;
+  }
+  .form-index--at-form {
     padding: 40rpx;
   }
 }

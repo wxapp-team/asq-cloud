@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtButton, AtForm, AtInput, AtToast } from 'taro-ui'
+import index1Png from '../../assets/images/index-1.png'
 import './index.less'
 
 export default class Index extends Component {
@@ -9,7 +10,6 @@ export default class Index extends Component {
   }
 
   state = {
-    userInfo: {},
     formInfo: {},
     openid: null
   }
@@ -22,22 +22,10 @@ export default class Index extends Component {
       name: 'login',
       data: {},
       success: res => {
-        console.log('[login] user openid: ', res.result.openid)
+        console.log(res)
         const openid = res.result.openid
-        wx.getUserInfo({
-          success: res => {
-            const userInfo = res.userInfo
-            const nickName = userInfo.nickName
-            const avatarUrl = userInfo.avatarUrl
-            const gender = userInfo.gender // 性别 0：未知、1：男、2：女
-            const province = userInfo.province
-            const city = userInfo.city
-            const country = userInfo.country
-            this.setState({
-              userInfo,
-              openid
-            })
-          }
+        this.setState({
+          openid
         })
       },
       fail: err => {
@@ -53,7 +41,7 @@ export default class Index extends Component {
   componentDidHide() {}
 
   onSubmit = e => {
-    const { formInfo, openid, userInfo } = this.state
+    const { formInfo, openid } = this.state
     if (!formInfo.name || !formInfo.dept || !formInfo.phone) {
       wx.showToast({
         title: '请填写必要信息！',
@@ -70,7 +58,7 @@ export default class Index extends Component {
 
     wx.setStorage({
       key: 'userInfo',
-      data: { ...userInfo, ...formInfo, openid }
+      data: { ...formInfo, openid }
     })
 
     const db = wx.cloud.database()
@@ -105,9 +93,9 @@ export default class Index extends Component {
   }
 
   saveUserInfo = () => {
-    const { userInfo, openid, formInfo } = this.state
+    const { openid, formInfo } = this.state
     this.userDB.add({
-      data: { ...userInfo, ...formInfo, openid },
+      data: { ...formInfo, openid },
       success(res) {
         wx.hideLoading()
         Taro.redirectTo({
@@ -127,17 +115,15 @@ export default class Index extends Component {
   }
 
   render() {
-    const { userInfo, formInfo } = this.state
+    const { formInfo } = this.state
     return (
       <View className="index">
         <View className="title">
           国网黑龙江电力2019年3.15信通客服优质服务联合行动
         </View>
-        <View>用户调查问卷</View>
-        {/* <Image className="avatar" mode="aspectFit" src={userInfo.avatarUrl} /> */}
-        {/* <View>欢迎您{userInfo.nickName}</View> */}
+        <View className="intro">用户调查问卷</View>
         <View className="info">
-          <AtForm onSubmit={this.onSubmit}>
+          <AtForm>
             <AtInput
               name="name"
               title="姓名"
@@ -162,11 +148,14 @@ export default class Index extends Component {
               value={formInfo.phone}
               onChange={v => this.handleChange('phone', v)}
             />
-            <AtButton formType="submit" type="primary" className="submitBtn">
-              参与调查
-            </AtButton>
           </AtForm>
         </View>
+        <View className="introImg">
+          <Image src={index1Png} mode="widthFix" style="width:470rpx"/>
+        </View>
+        <AtButton formType="submit" type="primary" className="submitBtn" onClick={this.onSubmit}>
+          参与调查
+        </AtButton>
       </View>
     )
   }

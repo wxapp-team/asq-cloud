@@ -1,25 +1,76 @@
 .list {
+  background: rgb(235, 235, 235);
   .at-form {
-    padding: 40rpx;
+    padding: 20rpx;
+    background: rgb(235, 235, 235);
   }
   .at-card-header__title,
   .at-card-header__extra {
     white-space: normal !important;
   }
-  .at-card-content{
-    padding: 0
+  .at-card-content {
+    padding: 0;
   }
   .at-card {
     margin-bottom: 40rpx;
-    overflow:hidden;
+    overflow: hidden;
   }
   .error {
     .not {
-      border: 2PX solid #f44336;
+      border: 2px solid #f44336;
     }
   }
   .submitBtn {
-    width:90%;
-    margin-bottom:20rpx;
+    width: 90%;
+    margin-bottom: 20rpx;
+  }
+  // iphone x
+  .form-index--at-form {
+    padding: 20rpx;
+    background: rgb(235, 235, 235);
+  }
+  .card-index--at-card {
+    margin-bottom: 40rpx;
+    overflow: hidden;
+  }
+  .form-index--error {
+    .card-index--not {
+      border: 1px solid #f44336;
+    }
+  }
+  .card-index--at-card-content {
+    padding: 0;
+  }
+  .card-index--at-card-header__title,
+  .card-index--at-card-header__extra {
+    white-space: normal !important;
+  }
+  .button-index--submitBtn {
+    width: 90%;
+    margin-bottom: 20rpx;
+  }
+  .top-img {
+    text-align: center;
+    position: relative;
+    view {
+      color: #2571fe;
+      position: absolute;
+      font-size: 19PX;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+    }
+  }
+  .form-index--at-form::after {
+    border: none;
+  }
+  .at-form::after {
+    border: none;
+  }
+  .radio-list__label {
+    display:block;
+    padding:26rpx;
+
   }
 }
