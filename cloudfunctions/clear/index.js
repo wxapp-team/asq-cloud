@@ -13,6 +13,10 @@ exports.main = async (event, context) => {
   try {
     const wxContext = cloud.getWXContext()
     const exams = db.collection('exams');
+    const user = db.collection('user');
+    await user.where({
+      openid: _.neq(-1),
+    }).remove();
     return await exams.where({
       openid: _.neq(-1),
     }).remove();

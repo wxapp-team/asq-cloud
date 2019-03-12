@@ -86,16 +86,7 @@ export default class List extends Component {
   onSaveExam = datalist => {
     const userInfo = wx.getStorageSync('userInfo')
     if (userInfo) {
-      const { openid, name, phone, dept } = userInfo
-      // const db = wx.cloud.database()
-      // this.examsDB = db.collection('exams')
-
-      // datalist.forEach(item => {
-      //   const data = { ...item, openid, nickName, phone, dept }
-      //   this.examsDB.add({
-      //     data
-      //   })
-      // })
+      const { openid, name, phone, dept, cs } = userInfo
 
       wx.cloud.callFunction({
         name: 'insert',
@@ -105,7 +96,8 @@ export default class List extends Component {
             openid,
             name,
             phone,
-            dept
+            dept,
+            cs
           }))
         },
         success: res => {
@@ -152,15 +144,15 @@ export default class List extends Component {
                 title={`第${item.number + 1}题：${item.title}`}
               >
                 <RadioGroup
-                  onChange={value => this.onCheckedChange(item, value)}
+                  onChange={e => this.onCheckedChange(item, e.detail.value)}
                 >
                   <Label className="radio-list__label">
-                    <Radio color="#2571fe" value="1">
+                    <Radio color="#006e6a" value="1">
                       {' 是'}
                     </Radio>
                   </Label>
                   <Label className="radio-list__label">
-                    <Radio color="#2571fe" value="0">
+                    <Radio color="#006e6a" value="0">
                       {' 否'}
                     </Radio>
                   </Label>

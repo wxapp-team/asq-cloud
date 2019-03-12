@@ -79,14 +79,14 @@ export default class Index extends Component {
             this.saveUserInfo()
           } else {
             wx.hideLoading()
-            Taro.redirectTo({
-              url: '/pages/list/list'
-            })
-            // wx.showToast({
-            //   title: '您已投过票了！',
-            //   icon: 'none',
-            //   duration: 2000
+            // Taro.redirectTo({
+            //   url: '/pages/list/list'
             // })
+            wx.showToast({
+              title: '您已投过票了！',
+              icon: 'none',
+              duration: 2000
+            })
           }
         }
       })
@@ -126,7 +126,7 @@ export default class Index extends Component {
           <AtForm>
             <AtInput
               name="name"
-              title="姓名"
+              title="姓　　名"
               type="text"
               placeholder="请输入姓名"
               value={formInfo.name}
@@ -134,24 +134,32 @@ export default class Index extends Component {
             />
             <AtInput
               name="dept"
-              title="部门"
+              title="部　　门"
               type="text"
               placeholder="请输入部门"
               value={formInfo.dept}
               onChange={v => this.handleChange('dept', v)}
             />
             <AtInput
+              name="cs"
+              title="处　　室"
+              type="text"
+              placeholder="请输入处室"
+              value={formInfo.cs}
+              onChange={v => this.handleChange('cs', v)}
+            />
+            <AtInput
               name="phone"
-              title="手机号"
+              title="电话号码"
               type="number"
-              placeholder="请输入手机号"
+              placeholder="请输入电话号码"
               value={formInfo.phone}
               onChange={v => this.handleChange('phone', v)}
             />
           </AtForm>
         </View>
         <View className="introImg">
-          <Image src={index1Png} mode="widthFix" style="width:470rpx"/>
+          <Image src={index1Png} mode="widthFix" style="width:25vh"/>
         </View>
         <AtButton formType="submit" type="primary" className="submitBtn" onClick={this.onSubmit}>
           参与调查
