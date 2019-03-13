@@ -24,7 +24,7 @@ export default class Success extends Component {
 
   onShareAppMessage() {
     return {
-      title: '用户调查问卷',
+      title: '186客服中心邀请您参加3.15用户调查问卷',
       path: '/pages/index/index',
       imageUrl: '/assets/images/avatar.png'
     }
