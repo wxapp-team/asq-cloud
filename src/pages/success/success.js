@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import { AtButton, AtForm, AtRadio, AtToast, AtCard } from 'taro-ui'
 import bgImg from '../../assets/images/success-1.png'
 import code from '../../assets/images/code.png'
+import avatar from '../../assets/images/avatar.png'
 import './success.less'
 
 export default class Success extends Component {
@@ -26,7 +27,7 @@ export default class Success extends Component {
     return {
       title: '186客服中心邀请您参加3.15用户调查问卷',
       path: '/pages/index/index',
-      imageUrl: '/assets/images/avatar.png'
+      imageUrl: avatar
     }
   }
 
